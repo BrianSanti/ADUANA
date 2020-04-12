@@ -5,17 +5,22 @@
  */
 package GUI;
 
+
+import BO.CONTRIBO;
+import ENTITY.CONTRIENTITY;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author BRIAN
  */
 public class CONTRI extends javax.swing.JFrame {
 
-    /**
-     * Creates new form CONTRI
-     */
+    private CONTRIBO cbo = new CONTRIBO();
+    CONTRIENTITY contri = new CONTRIENTITY();
     public CONTRI() {
         initComponents();
+        
     }
 
     /**
@@ -195,7 +200,28 @@ public class CONTRI extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField8ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        
+        if(jTextField6.getText().isEmpty()||jTextField8.getText().isEmpty()||jTextField2.getText().isEmpty()||jTextField5.getText().isEmpty()
+            ||jTextField7.getText().isEmpty()||jTextField3.getText().isEmpty()||jTextField4.getText().isEmpty()||jTextField9.getText().isEmpty())
+        {JOptionPane.showMessageDialog(null,"LLENE TODOS LOS CAMPOS");
+       
+        }else{
+        
+        contri.setID_DPI(jTextField6.getText());
+        contri.setNit(jTextField8.getText());
+        contri.setNombre1(jTextField2.getText());
+        contri.setNonmbre2(jTextField5.getText());
+        contri.setApellido1(jTextField7.getText());
+        contri.setApellido2(jTextField3.getText());
+        contri.setFechaIngreso(jTextField4.getText());
+        contri.setRiesgoCliente(jTextField9.getText());
+        String mensaje = cbo.agregarCONTRI(contri);
+        JOptionPane.showMessageDialog(null,mensaje);
+        }
+        
+        
+        
+        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -221,7 +247,7 @@ public class CONTRI extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
