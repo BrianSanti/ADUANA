@@ -5,18 +5,29 @@
  */
 package GUI;
 
+import BO.IngresoProductoBO;
+import DATABASE.Conexion;
+import ENTITY.IngresoProducto;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author BRIAN
  */
 public class INGRESO extends javax.swing.JFrame {
-
+    private Conexion con = new Conexion();
+    private IngresoProductoBO IPBO = new IngresoProductoBO();
     /**
      * Creates new form INGRESO
      */
     public INGRESO() {
         initComponents();
+        this.cmbPaisIP.setModel(con.obt_Pais());
+        this.cmbTipoIP.setModel(con.obt_Tipo());
+        
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -30,32 +41,32 @@ public class INGRESO extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        btnVaciarIP = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         label6 = new java.awt.Label();
         label7 = new java.awt.Label();
-        jTextField7 = new javax.swing.JTextField();
+        txtContridpiIP = new javax.swing.JTextField();
         label8 = new java.awt.Label();
-        jTextField8 = new javax.swing.JTextField();
-        jTextField9 = new javax.swing.JTextField();
+        txtPreUnitIP = new javax.swing.JTextField();
+        txtCantIP = new javax.swing.JTextField();
         label9 = new java.awt.Label();
-        jTextField10 = new javax.swing.JTextField();
+        txtFechaIngIP = new javax.swing.JTextField();
         label10 = new java.awt.Label();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cmbTipoIP = new javax.swing.JComboBox<String>();
         label11 = new java.awt.Label();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        cmbPaisIP = new javax.swing.JComboBox<String>();
         jPanel1 = new javax.swing.JPanel();
         label1 = new java.awt.Label();
         label2 = new java.awt.Label();
-        jTextField2 = new javax.swing.JTextField();
+        txtCodigoIP = new javax.swing.JTextField();
         label3 = new java.awt.Label();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        txtIvaUnitIP = new javax.swing.JTextField();
+        txtCostoImpIP = new javax.swing.JTextField();
         label4 = new java.awt.Label();
-        jTextField5 = new javax.swing.JTextField();
+        txtDescIP = new javax.swing.JTextField();
         label5 = new java.awt.Label();
-        jTextField6 = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
+        txtUsuarioIP = new javax.swing.JTextField();
+        btnGuardarIP = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -80,14 +91,14 @@ public class INGRESO extends javax.swing.JFrame {
         });
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 20, 70, 70));
 
-        jButton2.setFont(new java.awt.Font("Humanst521 Lt BT", 1, 18)); // NOI18N
-        jButton2.setText("VACIAR");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnVaciarIP.setFont(new java.awt.Font("Humanst521 Lt BT", 1, 18)); // NOI18N
+        btnVaciarIP.setText("VACIAR");
+        btnVaciarIP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnVaciarIPActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 480, 220, 51));
+        getContentPane().add(btnVaciarIP, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 480, 220, 51));
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -100,42 +111,42 @@ public class INGRESO extends javax.swing.JFrame {
         label7.setFont(new java.awt.Font("Humanst521 Lt BT", 1, 18)); // NOI18N
         label7.setText("FECHA INGRESO");
         jPanel2.add(label7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 150, 30));
-        jPanel2.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, 270, 30));
+        jPanel2.add(txtContridpiIP, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, 270, 30));
 
         label8.setFont(new java.awt.Font("Humanst521 Lt BT", 1, 18)); // NOI18N
         label8.setText("CONTRIBUYENTE DPI");
         jPanel2.add(label8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 200, 30));
 
-        jTextField8.addActionListener(new java.awt.event.ActionListener() {
+        txtPreUnitIP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField8ActionPerformed(evt);
+                txtPreUnitIPActionPerformed(evt);
             }
         });
-        jPanel2.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 90, 270, 30));
+        jPanel2.add(txtPreUnitIP, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 90, 270, 30));
 
-        jTextField9.addActionListener(new java.awt.event.ActionListener() {
+        txtCantIP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField9ActionPerformed(evt);
+                txtCantIPActionPerformed(evt);
             }
         });
-        jPanel2.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 20, 270, 30));
+        jPanel2.add(txtCantIP, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 20, 270, 30));
 
         label9.setFont(new java.awt.Font("Humanst521 Lt BT", 1, 18)); // NOI18N
         label9.setText("CANTIDAD");
         jPanel2.add(label9, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 20, 110, 30));
-        jPanel2.add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 50, 270, 30));
+        jPanel2.add(txtFechaIngIP, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 50, 270, 30));
 
         label10.setFont(new java.awt.Font("Humanst521 Lt BT", 1, 18)); // NOI18N
         label10.setText("PRECIO UNIT");
         jPanel2.add(label10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 150, 30));
 
-        jPanel2.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 80, 140, 30));
+        jPanel2.add(cmbTipoIP, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 80, 140, 30));
 
         label11.setFont(new java.awt.Font("Humanst521 Lt BT", 1, 18)); // NOI18N
         label11.setText("PAIS ");
         jPanel2.add(label11, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 80, 50, 30));
 
-        jPanel2.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 80, 140, 30));
+        jPanel2.add(cmbPaisIP, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 80, 140, 30));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, 960, 140));
 
@@ -150,53 +161,53 @@ public class INGRESO extends javax.swing.JFrame {
         label2.setFont(new java.awt.Font("Humanst521 Lt BT", 1, 18)); // NOI18N
         label2.setText("DESCRIPCIÓN");
         jPanel1.add(label2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 150, 30));
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, 270, 30));
+        jPanel1.add(txtCodigoIP, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, 270, 30));
 
         label3.setFont(new java.awt.Font("Humanst521 Lt BT", 1, 18)); // NOI18N
         label3.setText("CODIGO");
         jPanel1.add(label3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 80, 30));
 
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        txtIvaUnitIP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                txtIvaUnitIPActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, 270, 30));
+        jPanel1.add(txtIvaUnitIP, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, 270, 30));
 
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        txtCostoImpIP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                txtCostoImpIPActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 20, 240, 30));
+        jPanel1.add(txtCostoImpIP, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 20, 240, 30));
 
         label4.setFont(new java.awt.Font("Humanst521 Lt BT", 1, 18)); // NOI18N
         label4.setText("COSTO IMPORT*");
         jPanel1.add(label4, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 20, 160, 30));
-        jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 50, 270, 30));
+        jPanel1.add(txtDescIP, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 50, 270, 30));
 
         label5.setFont(new java.awt.Font("Humanst521 Lt BT", 1, 18)); // NOI18N
         label5.setText("IVA UNIT");
         jPanel1.add(label5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 80, 30));
 
-        jTextField6.setEnabled(false);
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+        txtUsuarioIP.setEnabled(false);
+        txtUsuarioIP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
+                txtUsuarioIPActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 80, 270, 30));
+        jPanel1.add(txtUsuarioIP, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 80, 270, 30));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 960, 140));
 
-        jButton3.setFont(new java.awt.Font("Humanst521 Lt BT", 1, 18)); // NOI18N
-        jButton3.setText("GUARDAR");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnGuardarIP.setFont(new java.awt.Font("Humanst521 Lt BT", 1, 18)); // NOI18N
+        btnGuardarIP.setText("GUARDAR");
+        btnGuardarIP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnGuardarIPActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 480, 220, 51));
+        getContentPane().add(btnGuardarIP, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 480, 220, 51));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/thumb-1920-429165 (2).jpg"))); // NOI18N
         jLabel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -205,33 +216,58 @@ public class INGRESO extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void txtIvaUnitIPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIvaUnitIPActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_txtIvaUnitIPActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void txtCostoImpIPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCostoImpIPActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_txtCostoImpIPActionPerformed
 
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+    private void txtUsuarioIPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioIPActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
+    }//GEN-LAST:event_txtUsuarioIPActionPerformed
 
-    private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
+    private void txtPreUnitIPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPreUnitIPActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField8ActionPerformed
+    }//GEN-LAST:event_txtPreUnitIPActionPerformed
 
-    private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField9ActionPerformed
+    private void txtCantIPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantIPActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField9ActionPerformed
+    }//GEN-LAST:event_txtCantIPActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void btnVaciarIPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVaciarIPActionPerformed
+        this.txtCantIP.setText("");
+        this.txtCodigoIP.setText("");
+        this.txtContridpiIP.setText("");
+        this.txtCostoImpIP.setText("");
+        this.txtDescIP.setText("");
+        this.txtFechaIngIP.setText("");
+        this.txtIvaUnitIP.setText("");
+        this.txtPreUnitIP.setText("");
+        this.txtUsuarioIP.setText("");
+    }//GEN-LAST:event_btnVaciarIPActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void btnGuardarIPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarIPActionPerformed
+        if(this.txtCantIP.getText().isEmpty() || this.txtCodigoIP.getText().isEmpty() || this.txtContridpiIP.getText().isEmpty() || this.txtCostoImpIP.getText().isEmpty()
+                || this.txtDescIP.getText().isEmpty() || this.txtFechaIngIP.getText().isEmpty() || this.txtIvaUnitIP.getText().isEmpty() || this.txtPreUnitIP.getText().isEmpty()
+                || this.txtUsuarioIP.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "LLENE TODOS LOS CAMPOS");
+        }else{
+            IngresoProducto ip = new IngresoProducto();
+            ip.setDescripcion(this.txtDescIP.getText());
+            ip.setPrecioUnitario(Double.parseDouble(this.txtPreUnitIP.getText()));
+            ip.setCantidadArt(Integer.parseInt(this.txtCantIP.getText()));
+            ip.setIvaTotal(Double.parseDouble(this.txtIvaUnitIP.getText()));
+            ip.setImporteTotal(Double.parseDouble(this.txtCostoImpIP.getText()));
+            ip.setRiesgoProducto(this.cmbTipoIP.getSelectedIndex());
+            ip.setId_DPI(Integer.parseInt(this.txtContridpiIP.getText()));
+            ip.setId_PAIS(this.cmbPaisIP.getSelectedIndex());
+            ip.setId_TIPO(this.cmbTipoIP.getSelectedIndex());
+            
+            
+        }
+    }//GEN-LAST:event_btnGuardarIPActionPerformed
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         
@@ -277,25 +313,16 @@ public class INGRESO extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JButton btnGuardarIP;
+    private javax.swing.JButton btnVaciarIP;
+    private javax.swing.JComboBox<String> cmbPaisIP;
+    private javax.swing.JComboBox<String> cmbTipoIP;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
     private java.awt.Label label1;
     private java.awt.Label label10;
     private java.awt.Label label11;
@@ -307,5 +334,14 @@ public class INGRESO extends javax.swing.JFrame {
     private java.awt.Label label7;
     private java.awt.Label label8;
     private java.awt.Label label9;
+    private javax.swing.JTextField txtCantIP;
+    private javax.swing.JTextField txtCodigoIP;
+    private javax.swing.JTextField txtContridpiIP;
+    private javax.swing.JTextField txtCostoImpIP;
+    private javax.swing.JTextField txtDescIP;
+    private javax.swing.JTextField txtFechaIngIP;
+    private javax.swing.JTextField txtIvaUnitIP;
+    private javax.swing.JTextField txtPreUnitIP;
+    private javax.swing.JTextField txtUsuarioIP;
     // End of variables declaration//GEN-END:variables
 }
